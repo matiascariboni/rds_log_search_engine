@@ -1,25 +1,25 @@
 # RDS Log Search Engine
 
-Script de PowerShell para búsqueda avanzada en logs de auditoría de Amazon RDS.
+PowerShell script for advanced search in Amazon RDS audit logs.
 
-## 📋 Características
+## 📋 Features
 
-- ✅ Búsqueda en múltiples archivos de log simultáneamente
-- ✅ Soporte para ambientes prod y preprod
-- ✅ Búsqueda de términos múltiples (AND/OR lógico)
-- ✅ Filtros avanzados (fecha, aplicación, base de datos, acción)
-- ✅ Exportación a CSV, JSON o TXT
-- ✅ Estadísticas detalladas de búsqueda
-- ✅ Modo interactivo para usuarios menos técnicos
-- ✅ Colores y formato mejorado en consola
-- ✅ Límite de resultados configurable
-- ✅ Progreso visual durante búsquedas largas
+- ✅ Simultaneous search in multiple log files
+- ✅ Support for prod and preprod environments
+- ✅ Multiple term search (AND/OR logical)
+- ✅ Advanced filters (date, application, database, action)
+- ✅ Export to CSV, JSON or TXT
+- ✅ Detailed search statistics
+- ✅ Interactive mode for less technical users
+- ✅ Colors and improved console formatting
+- ✅ Configurable result limit
+- ✅ Visual progress during long searches
 
-## 📁 Estructura de Directorios Requerida
+## 📁 Required Directory Structure
 
 ```
 log_search_engine/
-├── Search-RDSLogs.ps1          # Script principal
+├── Search-RDSLogs.ps1          # Main script
 ├── prod/
 │   ├── server_audit.log
 │   ├── server_audit.log.01
@@ -32,69 +32,69 @@ log_search_engine/
     └── ...
 ```
 
-## 🚀 Instalación
+## 🚀 Installation
 
-1. Copia el script `Search-RDSLogs.ps1` en la carpeta raíz `log_search_engine`
-2. Asegúrate de que las carpetas `prod` y `preprod` contengan los logs
-3. Ejecuta PowerShell como administrador (si es necesario)
+1. Copy the `Search-RDSLogs.ps1` script to the root folder `log_search_engine`
+2. Ensure the `prod` and `preprod` folders contain the logs
+3. Run PowerShell as administrator (if necessary)
 
-## 🎯 Uso Básico
+## 🎯 Basic Usage
 
-### Modo Interactivo (Recomendado para principiantes)
+### Interactive Mode (Recommended for beginners)
 
 ```powershell
 .\Search-RDSLogs.ps1 -Interactive
 ```
 
-El script te guiará paso a paso a través de todas las opciones.
+The script will guide you step by step through all options.
 
-### Búsquedas Rápidas
+### Quick Searches
 
-**Buscar un término en producción:**
+**Search for a term in production:**
 ```powershell
 .\Search-RDSLogs.ps1 -Environment prod -SearchTerms "mqtt-decoder"
 ```
 
-**Buscar en ambos ambientes:**
+**Search in both environments:**
 ```powershell
 .\Search-RDSLogs.ps1 -Environment both -SearchTerms "ERROR"
 ```
 
-**Buscar un GlobalSmartID específico:**
+**Search for a specific GlobalSmartID:**
 ```powershell
 .\Search-RDSLogs.ps1 -Environment prod -SearchTerms "HGQ09NJ0N94"
 ```
 
-### Búsquedas con Múltiples Términos
+### Multiple Term Searches
 
-**Buscar líneas con CUALQUIER término (OR lógico):**
+**Search for lines with ANY term (OR logic):**
 ```powershell
 .\Search-RDSLogs.ps1 -Environment both -SearchTerms "ERROR","FAIL","TIMEOUT"
 ```
 
-**Buscar líneas con TODOS los términos (AND lógico):**
+**Search for lines with ALL terms (AND logic):**
 ```powershell
 .\Search-RDSLogs.ps1 -Environment prod -SearchTerms "mqtt-decoder","INSERT" -MatchAll
 ```
 
-### Filtros Avanzados
+### Advanced Filters
 
-**Filtrar por aplicación:**
+**Filter by application:**
 ```powershell
 .\Search-RDSLogs.ps1 -Environment prod -Application "mqtt-decoder" -ShowStats
 ```
 
-**Filtrar por base de datos:**
+**Filter by database:**
 ```powershell
 .\Search-RDSLogs.ps1 -Environment preprod -Database "ENV000_MasterCommonData"
 ```
 
-**Filtrar por tipo de acción:**
+**Filter by action type:**
 ```powershell
 .\Search-RDSLogs.ps1 -Environment prod -Action "QUERY"
 ```
 
-**Filtrar por rango de fechas:**
+**Filter by date range:**
 ```powershell
 .\Search-RDSLogs.ps1 -Environment both -DateFrom "2025-12-16" -DateTo "2025-12-16 12:00:00"
 ```
